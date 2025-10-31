@@ -7,6 +7,8 @@ Dockerfile
 
 # ignore potentially sensitive credentials files
 conf/**/*credentials*
+# but allow docker-specific credentials
+!conf/production/credentials.docker.yml
 
 # ignore all local configuration
 conf/local

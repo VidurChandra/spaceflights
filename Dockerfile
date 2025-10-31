@@ -1,4 +1,4 @@
-ARG BASE_IMAGE=python:3.9-slim
+ARG BASE_IMAGE=python:3.11-slim
 FROM $BASE_IMAGE as runtime-environment
 
 # install build dependencies
@@ -34,4 +34,9 @@ COPY --chown=${KEDRO_UID}:${KEDRO_GID} . .
 
 EXPOSE 8888
 
-CMD ["kedro", "run"]
+# Use docker-specific credentials when running in container
+RUN if [ -f conf/production/credentials.docker.yml ]; then \
+      mv conf/production/credentials.docker.yml conf/production/credentials.yml; \
+    fi
+
+CMD ["kedro", "run", "--env=production"]
