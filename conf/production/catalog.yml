@@ -1,0 +1,28 @@
+companies:
+  type: pandas.CSVDataset
+  filepath: s3://spaceflights/data/01_raw/companies.csv
+  fs_args:
+    client_kwargs:
+      endpoint_url: http://127.0.0.1:9000
+    key: minioadmin
+    secret: minioadmin
+
+reviews:
+  type: pandas.CSVDataset
+  filepath: s3://spaceflights/data/01_raw/reviews.csv
+  fs_args:
+    client_kwargs:
+      endpoint_url: http://127.0.0.1:9000
+    key: minioadmin
+    secret: minioadmin
+
+shuttles:
+  type: pandas.ExcelDataset
+  filepath: s3://spaceflights/data/01_raw/shuttles.xlsx
+  fs_args:
+    client_kwargs:
+      endpoint_url: http://127.0.0.1:9000
+    key: minioadmin
+    secret: minioadmin
+  load_args:
+    engine: openpyxl
